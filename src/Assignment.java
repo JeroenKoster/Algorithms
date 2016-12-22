@@ -92,13 +92,12 @@ public class Assignment {
     public void run() {
         System.out.println(N);
         for (int i = 0; i < 10; i++) {
-            //long start = System.currentTimeMillis();
+            long start = System.currentTimeMillis();
 
             fillArray3();
             System.out.println(Arrays.toString(array));
-
-            //long end = System.currentTimeMillis();
-            //System.out.println(end - start);
+            long end = System.currentTimeMillis();
+            System.out.println(end - start);
         }
 
     }
