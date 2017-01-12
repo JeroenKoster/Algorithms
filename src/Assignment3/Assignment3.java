@@ -17,14 +17,11 @@ public class Assignment3 {
 
     private ArrayList<Node> maze;
 
-
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new Assignment3().run();
     }
 
-    public void run()
-    {
+    public void run() {
         maze.add(new Node(1, Node.PURPLE,
                 new ArrayList<>(Arrays.asList(
                         new Connection(1, 4, PURPLE),
@@ -119,12 +116,12 @@ public class Assignment3 {
                 ))));
         maze.add(new Node(21, Node.BLACK,
                 new ArrayList<>(Arrays.asList(
-                        new Connection(21,22,YELLOW),
-                        new Connection(21,FINISH,BLACK)
+                        new Connection(21, 22, YELLOW),
+                        new Connection(21, FINISH, BLACK)
                 ))));
         maze.add(new Node(22, Node.BLACK,
                 new ArrayList<>(Arrays.asList(
-                        new Connection(22,17,YELLOW)
+                        new Connection(22, 17, YELLOW)
                 ))));
         maze.add(new Node(Node.FINISH, Node.FINISH, null));
     }

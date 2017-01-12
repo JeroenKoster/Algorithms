@@ -19,8 +19,7 @@ public class Node {
 
     private ArrayList<Connection> connections;
 
-    public Node(int number, int color, ArrayList<Connection> connections )
-    {
+    public Node(int number, int color, ArrayList<Connection> connections) {
         this.number = number;
         this.color = color;
         this.connections = connections;

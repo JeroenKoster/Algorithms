@@ -11,25 +11,24 @@ public class State {
     private Node pos1;
     private Node pos2;
 
-    public State(Node pos1, Node pos2)
-    {
+    public State(Node pos1, Node pos2) {
         this.pos1 = pos1;
         this.pos2 = pos2;
     }
 
     //code from the slides//
 
-    LinkedList<State> dfs(State start){
+    private LinkedList<State> dfs(State start) {
         List<State> solution;
-        if(isGoalState(start)){         //solution found
+        if (isGoalState(start)) {         //solution found
             solution = new LinkedList<State>();
             solution.add(start);
             return (LinkedList<State>) solution;
-        }else{
+        } else {
             List<State> neighbours = getNeighbours(start);
-            for(State neighbour : neighbours){
+            for (State neighbour : neighbours) {
                 solution = dfs(neighbour);
-                if(goalsReached(solution)){
+                if (goalIsReached(solution)) {
                     solution.addFirst(start);
                     return (LinkedList<State>) solution;
                 }
@@ -38,13 +37,19 @@ public class State {
         return new LinkedList<State>();     //no solution
     }
 
+    //the goal is reached, stop. (Or continue and find a different route to the goal)
+
+    private boolean goalIsReached(List<State> state) {
+
+    }
+
     //if current node (start) is FINISH
-    private boolean isGoalState(State state){
-        return true; //if the goal is reached
+    private boolean isGoalState(State state) {
+        return true; //if this is actually the goal state
     }
 
     //get all toNodes from that fromNode
-    private List<State> getNeighbours(State state){
+    private List<State> getNeighbours(State state) {
         List<State> result = new LinkedList<State>();
         //state is the current node the pawn is on
         //get the maze
@@ -53,14 +58,7 @@ public class State {
         //return neighbours;
     }
 
-    private void goalsReached(){
-
-    }
-
-    //not reaally sure what this does..
-    private void addFirst(Node node){
-
-    }
+    //TODO: addFirst method
 
 
 }

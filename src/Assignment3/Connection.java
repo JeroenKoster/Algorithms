@@ -15,8 +15,7 @@ public class Connection {
 
     private int arrowColor;
 
-    public Connection(int fromNode, int toNode, int arrowColor)
-    {
+    public Connection(int fromNode, int toNode, int arrowColor) {
         this.fromNode = fromNode;
         this.toNode = toNode;
         this.arrowColor = arrowColor;
