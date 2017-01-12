@@ -141,7 +141,7 @@ public class Assignment3 {
             List<State> neighbours = getNeighbours(start);
             for (State neighbour : neighbours) {
                 solution = dfs(neighbour);
-                if (goalIsReached(solution)) {
+                if (goalIsReached(solution)) {      //TODO: this shoulnd be a boolean, isGoal state is a boolean already
                     solution.addFirst(start);
                     return (LinkedList<State>) solution;
                 }
@@ -151,14 +151,19 @@ public class Assignment3 {
     }
 
     //the goal is reached, stop. (Or continue and find a different route to the goal)
-
-    private boolean goalIsReached(List<State> state) {
-        if(state == maze.get(state))
+    private void goalIsReached(List<State> state) {
+        //TODO: this is what happens when we reach finish,
+        // not a check is this node is finish
+        //this is what its like in the pseudo code tho
     }
 
     //if current node (start) is FINISH
     private boolean isGoalState(State state) {
-        return true; //if this is actually the goal state
+        if (maze.get(Integer.valueOf(String.valueOf(state))).equals(FINISH)) {  //looks bad, could be better?
+            return true;
+        } else { //not FINISH
+            return false;
+        }
     }
 
     //get all toNodes from that fromNode
