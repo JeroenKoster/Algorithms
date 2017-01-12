@@ -1,6 +1,7 @@
+package Assignment3;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * Created by Jeroen on 21/12/2016.
@@ -14,11 +15,13 @@ public class Assignment3 {
 
     public final static int FINISH = 99;
 
+    private ArrayList<Node> maze;
+
+
     public static void main(String[] args)
     {
         new Assignment3().run();
     }
-
 
     public void run()
     {
@@ -125,8 +128,6 @@ public class Assignment3 {
                 ))));
         maze.add(new Node(Node.FINISH, Node.FINISH, null));
     }
-
-    private ArrayList<Node> maze;
 
 
 }

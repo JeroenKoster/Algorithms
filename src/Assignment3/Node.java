@@ -1,5 +1,6 @@
+package Assignment3;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Jeroen on 21/12/2016.
@@ -16,12 +17,12 @@ public class Node {
     private int color;
     private int number;
 
-    private ArrayList<Connection> connection;
+    private ArrayList<Connection> connections;
 
-    public Node(int number, int color, ArrayList<Connection> connection )
+    public Node(int number, int color, ArrayList<Connection> connections )
     {
         this.number = number;
         this.color = color;
-        this.connection = connection;
+        this.connections = connections;
     }
 }

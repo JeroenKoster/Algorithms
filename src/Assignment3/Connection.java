@@ -1,3 +1,5 @@
+package Assignment3;
+
 /**
  * Created by Jeroen on 22/12/2016.
  */
