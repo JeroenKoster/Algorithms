@@ -51,7 +51,7 @@ public class RSHeap2 {
     private void percolateUp(int index)
     {
         if (getParent(index) > heap[index]) {
-            swap(getParentIndex(index), index);
+            Swap(getParentIndex(index), index);
             percolateUp(getParentIndex(index));
         }
     }
@@ -67,14 +67,14 @@ public class RSHeap2 {
         }
         if (rightChild == -1) { // No rightchild, just a left child
             if (leftChild < heap[index]) {
-                swap(index, leftChildIndex);
+                Swap(index, leftChildIndex);
                 percolateDown(leftChildIndex);
             }
         } else if (leftChild <= rightChild && leftChild < heap[index]) {
-            swap(index, leftChildIndex);
+            Swap(index, leftChildIndex);
             percolateDown(leftChildIndex);
         } else if (rightChild < heap[index] ) {
-            swap(index, rightChildIndex);
+            Swap(index, rightChildIndex);
             percolateDown(rightChildIndex);
         }
     }
@@ -84,7 +84,7 @@ public class RSHeap2 {
         return heap.length - DEAD_SPACE - 1;
     }
 
-    private void swap(int parentIndex, int childIndex)
+    private void Swap(int parentIndex, int childIndex)
     {
         int temp = heap[parentIndex];
         heap[parentIndex] = heap[childIndex];
