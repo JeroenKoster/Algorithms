@@ -10,14 +10,24 @@ public class Connection {
     public final static int GREEN = 3;
     public final static int YELLOW = 4;
 
-    private int fromNode;
-    private int toNode;
+    private Node startNode;
+    private Node toNode;
 
     private int arrowColor;
 
-    public Connection(int fromNode, int toNode, int arrowColor) {
-        this.fromNode = fromNode;
-        this.toNode = toNode;
+    public int getArrowColor()
+    {
+        return arrowColor;
+    }
+
+    public Connection(Node startNode, Node endNode, int arrowColor) {
+        this.startNode = startNode;
+        this.toNode = endNode;
         this.arrowColor = arrowColor;
+    }
+
+    public Node getToNode()
+    {
+        return toNode;
     }
 }
