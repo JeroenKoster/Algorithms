@@ -32,15 +32,16 @@ public class Main {
         fillInputFile(100);
         input = getNumbersFromFile(100);
         RSHeap2 heap = new RSHeap2(Arrays.copyOf(input,10));
-        heap.printAsHeap();
         System.out.println(heap.toString());
-//        if (output.size() == 0 || smallest > output.get(output.size()-1)) {
-//            output.add(smallest);
-//            heap.insert(nextInputIndex);
-//            nextInputIndex++;
-//        } else {
-//            heap.insertToDeadSpace(smallest);
-//        }
+        output.add(heap.deleteSmallest());
+        System.out.println(heap.toString());
+        System.out.println("Output = " + output.toString());
+        output.add(heap.deleteSmallest());
+        System.out.println(heap.toString());
+        System.out.println("Output = " + output.toString());
+        output.add(heap.deleteSmallest());
+        System.out.println(heap.toString());
+        System.out.println("Output = " + output.toString());
     }
 
     private int[] getNumbersFromFile(int amount)

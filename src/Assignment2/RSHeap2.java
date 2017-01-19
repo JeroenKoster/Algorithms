@@ -33,7 +33,6 @@ public class RSHeap2 {
         heap[0] = heap[lastIndex];
         heap[lastIndex] = 0;
         percolateDown(0);
-        System.out.println(toString());
         return smallest;
     }
 
@@ -90,6 +89,11 @@ public class RSHeap2 {
         heap[childIndex] = temp;
     }
 
+    /**
+     * returns the value of the rightChild of the entered index (uses getRightChildIndex)
+     * @param index
+     * @return heapValue of rightChild
+     */
     private int getRightChild(int index)
     {
         int rightChildIndex = getRightChildIndex(index);
@@ -99,7 +103,11 @@ public class RSHeap2 {
             return heap[rightChildIndex];
         }
     }
-
+    /**
+     * Calculates the index of the rightchild of the entered index
+     * @param index
+     * @return childIndex or -1 if rightChild is not found;
+     */
     private int getRightChildIndex(int index)
     {
         int rightChildIndex = (index * 2) + 2;
@@ -110,6 +118,11 @@ public class RSHeap2 {
         }
     }
 
+    /**
+     * returns the value of the leftChild of the entered index (uses getLeftChildIndex)
+     * @param index
+     * @return heapValue of leftChild
+     */
     private int getLeftChild(int index)
     {
         int leftChildIndex = getLeftChildIndex(index);
@@ -119,6 +132,11 @@ public class RSHeap2 {
         return heap[leftChildIndex];
     }
 
+    /**
+     * Calculates the index of the left child of the entered index
+     * @param index
+     * @return childIndex or -1 if leftChild is not found;
+     */
     private int getLeftChildIndex(int index)
     {
         int leftChildIndex = (index * 2) + 1;
@@ -154,15 +172,34 @@ public class RSHeap2 {
     }
     
     public boolean isValidHeap() {
-        for (:
-             ) {
-            
+        for (int i = 0 ; i < (getLastIndex() /2); i++) {
+            if (getRightChildIndex(i) == 0) {
+                int counter = 1;
+                if (getLeftChild(i) == 0)
+                    i = 2;
+                for (int k = i+1; k < heap.length; k++) {
+                    if (heap[k] == 0) {
+                        counter++;
+                    }
+                    else {
+                        return false; // Empty space not at the end of array
+                    }
+                }
+                System.out.println("DeadSpace is size: " + counter);
+            }
+            if (getLeftChild(i) != -1 && getLeftChild(i) < heap[i]) {
+                return false;
+            }
+            if (getRightChild(i) != -1 && getRightChild(i) < heap[i]) {
+                return false;
+            }
         }
+        return true;
     }
 
     @Override
     public String toString()
     {
-        return "Heap = " + Arrays.toString(heap);
+        return "Heap = " + Arrays.toString(heap) + " (isValid: " + isValidHeap() + ")";
     }
 }
