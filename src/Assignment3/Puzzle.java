@@ -28,6 +28,65 @@ public class Puzzle {
      */
     public void run() {
         maze = new ArrayList<>();
+        initializeNodes();
+        initializeConnections();
+        State startState = new State(maze.get(0), maze.get(1)); // Setup the starting positions of the 2 virtual pawns.
+        LinkedList<State> solution = dfs(startState); // Tries to find the shortest solution recursively
+        System.out.println("Solution.size = " + solution.size() + "\nPos 1 \tPos 2" );
+        for (State s : solution) {
+            System.out.println(s.toString());
+        }
+    }
+
+    private LinkedList<State> dfs(State start) {
+        LinkedList<State> solution;
+        if (isGoalState(start)) {         //solution found
+            solution = new LinkedList<State>();
+            solution.add(start);
+            return solution;
+        } else {
+            List<State> neighbours = getNeighbours(start);
+            for (State neighbour : neighbours) {
+                solution = dfs(neighbour);
+                if (solution.size() > 0) { // Goal is reached
+                    solution.addFirst(start);
+                    return solution;
+                }
+            }
+        }
+        return new LinkedList<State>();     //no solution
+    }
+
+    //if one of the current state's nodes is FINISH
+    private boolean isGoalState(State state) {
+        return (state.getPos1().getNumber() == FINISH ||
+                state.getPos2().getNumber() == FINISH);
+    }
+
+    /**
+     * returns the neighbour states of the entered state
+     * (1 pawn will stay put, and one will move to the next node)
+     * @param state
+     * @return neighbourState
+     */
+    private List<State> getNeighbours(State state) {
+        Node pos1 = state.getPos1();
+        Node pos2 = state.getPos2();
+        ArrayList<State> neighbourStates = new ArrayList<State>();
+        for (Connection c : pos1.getConnections()) {
+            if (c.getArrowColor() == pos2.getColor()) {
+                neighbourStates.add(new State(c.getToNode(), pos2));
+            }
+        }
+        for (Connection c : pos2.getConnections()) {
+            if (c.getArrowColor() == pos1.getColor()) {
+                neighbourStates.add(new State(c.getToNode(), pos1));
+            }
+        }
+        return neighbourStates;
+    }
+
+    private void initializeNodes() {
         maze.add(new Node(1, PURPLE));
         maze.add(new Node(2, BLACK));
         maze.add(new Node(3, GREEN));
@@ -51,6 +110,9 @@ public class Puzzle {
         maze.add(new Node(21, BLACK));
         maze.add(new Node(22, BLACK));
         maze.add(new Node(FINISH, FINISH));
+    }
+
+    private void initializeConnections() {
 
         addConnectionToNode(1, 4, PURPLE);
         addConnectionToNode(1, 5, BLACK);
@@ -89,58 +151,7 @@ public class Puzzle {
         addConnectionToNode(21, FINISH, BLACK);
         addConnectionToNode(22, 17, YELLOW);
 
-        State startState = new State(maze.get(0), maze.get(1));
-        LinkedList<State> solution = dfs(startState);
-        System.out.println("Solution.size = " + solution.size());
-        System.out.println("solution:");
-        for (State s : solution) {
-            System.out.println(s.toString());
-        }
     }
-
-    private LinkedList<State> dfs(State start) {
-        //System.out.println(start.getPos1().getNumber() + "\t" + start.getPos2().getNumber());
-        LinkedList<State> solution;
-        if (isGoalState(start)) {         //solution found
-            solution = new LinkedList<State>();
-            solution.add(start);
-            return solution;
-        } else {
-            List<State> neighbours = getNeighbours(start);
-            for (State neighbour : neighbours) {
-                solution = dfs(neighbour);
-                if (solution.size() > 0) { // Goal is reached
-                    solution.addFirst(start);
-                    return solution;
-                }
-            }
-        }
-        return new LinkedList<State>();     //no solution
-    }
-
-    //if one of the current state's nodes (start) is FINISH
-    private boolean isGoalState(State state) {
-        return (state.getPos1().getNumber() == FINISH ||
-                state.getPos2().getNumber() == FINISH);
-    }
-
-    private List<State> getNeighbours(State state) {
-        Node pos1 = state.getPos1();
-        Node pos2 = state.getPos2();
-        ArrayList<State> neighbourStates = new ArrayList<State>();
-        for (Connection c : pos1.getConnections()) {
-            if (c.getArrowColor() == pos2.getColor()) {
-                neighbourStates.add(new State(c.getToNode(), pos2));
-            }
-        }
-        for (Connection c : pos2.getConnections()) {
-            if (c.getArrowColor() == pos1.getColor()) {
-                neighbourStates.add(new State(c.getToNode(), pos1));
-            }
-        }
-        return neighbourStates;
-    }
-
     private void addConnectionToNode(int node, int neighbour, int color) {
         if (node == FINISH) {
             node = maze.size();

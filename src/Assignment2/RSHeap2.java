@@ -9,7 +9,6 @@ public class RSHeap2 {
 
     private final static int ARRAY_SIZE = 10;
     private int[] heap;
-
     private static int HEAP_SIZE;
     private static int DEAD_SPACE = 0;
 
@@ -152,6 +151,13 @@ public class RSHeap2 {
         System.out.println("\t\t\t" + heap[1] + "\t\t\t\t\t\t\t\t" + heap[2]);
         System.out.println("\t" + heap[3] + "\t\t\t\t" + heap[4] + "\t\t\t\t" + heap[5] + "\t\t\t\t" + heap[6]);
         System.out.println(heap[7] + "\t\t" + heap[8] + "\t\t" + heap[9] + "\t\t");
+    }
+    
+    public boolean isValidHeap() {
+        for (:
+             ) {
+            
+        }
     }
 
     @Override
