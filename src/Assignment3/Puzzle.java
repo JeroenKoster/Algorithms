@@ -150,8 +150,8 @@ public class Puzzle {
         addConnectionToNode(21, 22, YELLOW);
         addConnectionToNode(21, FINISH, BLACK);
         addConnectionToNode(22, 17, YELLOW);
-
     }
+
     private void addConnectionToNode(int node, int neighbour, int color) {
         if (node == FINISH) {
             node = maze.size();
