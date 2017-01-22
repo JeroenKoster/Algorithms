@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Scanner;
-import java.util.StringJoiner;
 
 /**
  * Created by Jeroen on 20/12/2016.
@@ -15,7 +14,7 @@ public class RSHeap {
     private int[] heap;
     private static int MAX_HEAP_SIZE;
     private static int DEAD_SPACE = 0;
-
+    private boolean inputIsEmpty = false;
 
     /**
      * Constructor for RSHeap
@@ -33,10 +32,6 @@ public class RSHeap {
     private void createMinHeap()
     {
         for (int i = (MAX_HEAP_SIZE - 1) / 2; i >= 0; i--) {
-            if (heap[i] == 0) {
-                Swap(i, getLastIndex());
-                DEAD_SPACE++;
-            }
             percolateDown(i);
         }
     }
@@ -279,6 +274,8 @@ public class RSHeap {
                         nextInt = scanner.nextInt(); // Retrieve a new number from the input file
                         insert(nextInt);
                     } else {
+                        nextInt = 0;
+                        inputIsEmpty = true;
                         System.out.println("inputFile empty");
                     }
                     System.out.println("after inserting [" + String.valueOf(nextInt) + "] : \n" + toString());

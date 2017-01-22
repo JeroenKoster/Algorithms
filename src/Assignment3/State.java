@@ -26,7 +26,7 @@ public class State {
     @Override
     public String toString()
     {
-        return   pos1.getNumber()+
-                "\t\t" + pos2.getNumber();
+        return   "\t\t[" + pos1.getNumber() + "]" +
+                "   \t[" + pos2.getNumber() + "]";
     }
 }

@@ -32,9 +32,11 @@ public class Puzzle {
         initializeConnections();
         State startState = new State(maze.get(0), maze.get(1)); // Setup the starting positions of the 2 virtual pawns.
         LinkedList<State> solution = dfs(startState); // Tries to find the shortest solution recursively
-        System.out.println("Solution.size = " + solution.size() + "\nPos 1 \tPos 2" );
+        System.out.println("Steps to finish: \t(" + solution.size() + ")\n");
+        int moveNumber = 1;
         for (State s : solution) {
-            System.out.println(s.toString());
+            System.out.println("Move " + moveNumber + ": " + s.toString());
+            moveNumber++;
         }
     }
 
